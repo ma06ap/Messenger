@@ -6,6 +6,8 @@
 #define MESSENGER_MAIN_H
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 #include "ConsoleStyle.h"
 #include "Exception.h"
@@ -14,6 +16,18 @@
 
 using namespace std;
 
+inline void clearTerminal() {
+    std::cout << "\033[2J\033[H";
+    std::cout.flush();
+}
+
+void sleepMilliseconds(int milliseconds) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+}
+
+void sleepSeconds(int seconds) {
+    std::this_thread::sleep_for(std::chrono::seconds(seconds));
+}
 
 inline int readChoice() {
     int choice;
