@@ -3,14 +3,15 @@
 
 
 int main() {
-    LocalUser* loc = nullptr;
+    // cout << BG_CYAN_B  << endl;
+    LocalUser* loc = new LocalUser;
     while (1) {
         try {
             if (loc == nullptr) {
                 authMenu();
             }
             else {
-                dashboardMenu();
+                dashboardMenu(loc);
             }
         }
         catch (...) {

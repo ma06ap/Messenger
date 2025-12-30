@@ -7,6 +7,8 @@
 #ifndef CONSOLE_STYLE_H
 #define CONSOLE_STYLE_H
 
+#include <iostream>
+
 
 
 // Global reset
@@ -73,6 +75,15 @@ inline constexpr const char* BG_WHITE_B   = "\033[107m";
 
 // Reset background color only
 inline constexpr const char* RESET_BG = "\033[49m";
+
+
+inline void clearTerminal() {
+    std::cout << "\033[2J\033[H";
+    std::cout.flush();
+}
+
+
+
 
 #endif // CONSOLE_STYLE_H
 

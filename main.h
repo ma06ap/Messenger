@@ -14,12 +14,8 @@
 
 using namespace std;
 
-inline void clearTerminal() {
-    std::cout << "\033[2J\033[H";
-    std::cout.flush();
-}
 
-int readChoice() {
+inline int readChoice() {
     int choice;
     if (!(cin >> choice)) {
         cin.clear();
@@ -29,7 +25,7 @@ int readChoice() {
     return choice;
 }
 
-void login() {
+inline void login() {
     clearTerminal();
     cout << GREEN << "Login page\n" << RESET;
     cout << "Login successful (mock)\n";
@@ -37,7 +33,7 @@ void login() {
     cin >> n; // mock to pause
 }
 
-void signup() {
+inline void signup() {
     clearTerminal();
     cout << GREEN << "Signup page\n" << RESET;
     cout << "Signup successful (mock)\n";
@@ -45,7 +41,7 @@ void signup() {
     cin >> n; // mock to pause
 }
 
-void authMenu() {
+inline void authMenu() {
     while (true) {
         try {
             clearTerminal();
@@ -67,13 +63,13 @@ void authMenu() {
         }
         catch (exception& e) {
             cout << RED << e.what() << RESET << endl;
-            cin.get(); cin.get();
+            // cin.get(); cin.get();
         }
     }
 }
 
 
-void usersMenu() {
+inline void usersMenu() {
     while (true) {
         try {
             clearTerminal();
@@ -95,17 +91,17 @@ void usersMenu() {
             int n = 0;
             cin >> n; // mock to pause
 
-            cin.get(); cin.get();
+            // cin.get(); cin.get();
         }
         catch (exception& e) {
             cout << RED << e.what() << RESET << endl;
-            cin.get(); cin.get();
+            // cin.get(); cin.get();
         }
     }
 }
 
 
-void chatsMenu() {
+inline void chatsMenu() {
     while (true) {
         try {
             clearTerminal();
@@ -128,17 +124,17 @@ void chatsMenu() {
             int n = 0;
             cin >> n; // mock to pause
 
-            cin.get(); cin.get();
+            // cin.get(); cin.get();
         }
         catch (exception& e) {
             cout << RED << e.what() << RESET << endl;
-            cin.get(); cin.get();
+            // cin.get(); cin.get();
         }
     }
 }
 
 
-void dashboardMenu() {
+inline void dashboardMenu(LocalUser*& user) {
     while (true) {
         try {
             clearTerminal();
@@ -154,17 +150,20 @@ void dashboardMenu() {
             if (c == 1) usersMenu();
             else if (c == 2) chatsMenu();
             else if (c == 3) cout << "New chat created...\n";
-            else if (c == 4) return;
+            else if (c == 4) {
+                user = nullptr;
+                return;
+            }
             else throw MenuException("Invalid dashboard option");
 
             int n = 0;
             cin >> n; // mock to pause
 
-            cin.get(); cin.get();
+            // cin.get(); cin.get();
         }
         catch (exception& e) {
-            cout << RED << e.what() << RESET << endl;
-            cin.get(); cin.get();
+            cout << endl << RED << e.what() << RESET << endl;
+            // cin.get(); cin.get();
         }
     }
 }
